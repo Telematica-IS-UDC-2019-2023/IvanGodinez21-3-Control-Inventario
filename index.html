@@ -1,32 +1,34 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/icon.png"/>
+    <link rel="icon" type="image/png" href="img/icon.png" />
     <title>Control de inventario</title>
 </head>
+
 <body>
     <h1 style="text-align: center;">Control de inventario</h1>
     <div class="flex">
         <div class="container">
             <div class="mr">
                 <h2>Añadir artículo</h2>
-                <input name="codigo" placeholder="Código" type="number" id="codigo"/>
+                <input name="codigo" placeholder="Código" type="number" id="codigo" />
             </div>
             <div class="mr">
-                <input name="nombre" placeholder="Nombre" type="text" id="nombre"/>
+                <input name="nombre" placeholder="Nombre" type="text" id="nombre" />
             </div>
             <div class="mr">
-                <input name="descripcion" placeholder="Descripción" type="text" id="descripcion"/>
+                <input name="descripcion" placeholder="Descripción" type="text" id="descripcion" />
             </div>
             <div class="mr">
-                <input name="cantidad" type="number" placeholder="Cantidad" id="cantidad"/>
+                <input name="cantidad" type="number" placeholder="Cantidad" id="cantidad" />
             </div>
 
             <div class="mr">
-                <input name="costo" type="number" placeholder="Costo ($)" id="costo"/>
+                <input name="costo" type="number" placeholder="Costo ($)" id="costo" />
             </div>
 
             <div class="mr">
@@ -37,24 +39,52 @@
         </div>
         <div class="container">
             <div class="mr">
-                <h2>Insertar</h2>
+                <h2>Info. del artículo</h2>
+                <table name="infoarticulo" id="infoarticulo">
+                    <tbody>
+                        <tr>
+                            <td>Característica</td>
+                            <td>Información</td>
+                        </tr>
+                        <tr>
+                            <td>Código</td>
+                            <td id="tablecodigo">----</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre</td>
+                            <td id="tablenombre">----</td>
+                        </tr>
+                        <tr>
+                            <td>Descripción</td>
+                            <td id="tabledescripcion">----</td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad</td>
+                            <td id="tablecantidad">----</td>
+                        </tr>
+                        <tr>
+                            <td>Costo ($)</td>
+                            <td id="tablecosto">----</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="container">
             <div class="mr">
                 <h2>Lista</h2>
-                <table>
-                    <tr></tr>
-                    <td></td>
+                <table name="lista" id="lista">
                 </table>
             </div>
         </div>
         <div class="container">
             <div class="mr">
                 <h2>Lista invertida</h2>
+                <table name="listainvertida" id="listainvertida"></table>
             </div>
         </div>
     </div>
 </body>
 <script src="main.js"></script>
+
 </html>

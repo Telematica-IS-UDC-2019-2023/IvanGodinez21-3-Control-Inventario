@@ -46,6 +46,14 @@ button:active {
     border-color: #a51c3c;
 }
 
+table, td, tr {
+    border: 4px solid #2B2D42;
+    border-radius: 6px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .mr {
     text-align: center;
     margin:10px;
