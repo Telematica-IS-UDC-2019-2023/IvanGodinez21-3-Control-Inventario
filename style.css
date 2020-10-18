@@ -13,11 +13,6 @@ h1 {
     border-width: 5px;
 }
 
-.mr {
-    text-align: center;
-    margin:10px;
-}
-
 input {
     background-color: #EDF2F4;
     border: 1px solid #EDF2F4;
@@ -26,18 +21,20 @@ input {
     padding: 10px;
     width:100%;
     border-radius:10px;
+    font-family: 'Balsamiq Sans', cursive
 }
 
 button {
     text-align: center;
     cursor: pointer;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
     font-size: 15px;
     color:white;
     border-color: #BE1F44;
     background-color: #D93A4D;
     outline: none;
+    font-family: 'Balsamiq Sans', cursive
 }
 
 button:hover {
@@ -47,6 +44,11 @@ button:hover {
 button:active {
     background-color: #BE1F44;
     border-color: #a51c3c;
+}
+
+.mr {
+    text-align: center;
+    margin:10px;
 }
 
 .flex{
