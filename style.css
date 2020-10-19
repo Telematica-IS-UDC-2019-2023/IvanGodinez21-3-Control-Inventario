@@ -6,10 +6,11 @@ body {
 
 h1 {
     font-size: xx-large;
-    text-decoration: underline;
+    text-decoration: none;
     border-radius: 20px;
     border-color: #EDF2F4;
-    border-style: dashed;
+    border-style: none;
+    background: #8D99AE;
     border-width: 5px;
 }
 
