@@ -11,14 +11,15 @@ class Articulo {
         this.descripcion = descripcion;
         this.cantidad = cantidad;
         this.costo = costo;
+        this.total = (cantidad * costo);
     }
     añadir(elemento) {
-        let casilla = document.querySelector('#casilla')
+        let casilla = document.querySelector('#casilla');
         if (casilla) {
             if ((casilla.value - 1) < lista.length) {
                 lista.splice((casilla.value - 1), 0, elemento);
             } else {
-                alert('🚫 No puedes insertar en el ultimo artículo o por encima del mismo 🚫');
+                alert('🚫 No puedes insertar en el último artículo, por encima del mismo o si la lista esta vacía 🚫');
             }
         } else {
             lista.push(elemento);
@@ -28,7 +29,7 @@ class Articulo {
 cboxInsertar.addEventListener('click', () => {
     if (cboxInsertar.checked == true) {
         let divinsertar = document.getElementById('divinsertar');
-        divinsertar.innerHTML = '<input name="casilla" type="number" placeholder="Casilla" id="casilla" />'
+        divinsertar.innerHTML = '<input name="casilla" type="number" placeholder="Casilla" id="casilla" />';
     } else if (cboxInsertar.checked == false) {
         let casilla = document.querySelector('#casilla');
         casilla.remove();
@@ -120,7 +121,7 @@ btnEliminar.addEventListener('click', () => {
                         celda2.textContent = lista[i].nombre;
                     }
                     for (let i = (lista.length - 1); i >= 0; i--) {
-                        let fila = tableinvertida.insertRow(-1)
+                        let fila = tableinvertida.insertRow(-1);
                         let celda1 = fila.insertCell(0);
                         let celda2 = fila.insertCell(1);
                         celda1.textContent = lista[i].codigo;
@@ -163,11 +164,13 @@ btnBuscar.addEventListener('click', () => {
                     let tabledescripcion = document.getElementById('tabledescripcion');
                     let tablecantidad = document.getElementById('tablecantidad');
                     let tablecosto = document.getElementById('tablecosto');
+                    let tabletotal = document.getElementById('tabletotal');
                     tablecodigo.innerText = lista[i].codigo;
                     tablenombre.innerText = lista[i].nombre;
                     tabledescripcion.innerText = lista[i].descripcion;
                     tablecantidad.innerText = lista[i].cantidad;
                     tablecosto.innerText = lista[i].costo;
+                    tabletotal.innerText = lista[i].total;
                     if (lista.length > 0) {
                         console.log(lista);
                     }
@@ -199,7 +202,7 @@ btnLimpiar.addEventListener('click', () => {
     descripcion.value = '';
     cantidad.value = '';
     costo.value = '';
-    cboxInsertar.checked = false
+    cboxInsertar.checked = false;
     let casilla = document.querySelector('#casilla');
     if (casilla) {
         casilla.remove();
