@@ -1,6 +1,7 @@
 var btnAgregar = document.querySelector('#btnAgregar');
 var btnEliminar = document.querySelector('#btnEliminar');
 var btnBuscar = document.querySelector('#btnBuscar');
+var cboxInsertar = document.querySelector('#insertar')
 var lista = new Array;
 class Articulo {
     constructor(codigo, nombre, descripcion, cantidad, costo) {
@@ -14,59 +15,75 @@ class Articulo {
         lista.push(elemento);
     }
 }
+cboxInsertar.addEventListener('click', () => {
+    if (insertar.checked == true) {
+        let divinsertar = document.getElementById('divinsertar');
+        divinsertar.innerHTML = '<input name="casilla" type="number" placeholder="Casilla" id="casilla" />'
+    } else if (insertar.checked == false) {
+        let casilla = document.getElementById('casilla');
+        casilla.remove()
+    }
+});
 btnAgregar.addEventListener('click', () => {
-    let table = document.getElementById('lista');
-    let tableinvertida = document.getElementById('listainvertida');
-    let codigo = document.querySelector('#codigo');
-    let nombre = document.querySelector('#nombre');
-    let descripcion = document.querySelector('#descripcion');
-    let cantidad = document.querySelector('#cantidad');
-    let costo = document.querySelector('#costo');
-    let articulo = new Articulo(codigo.value, nombre.value, descripcion.value, cantidad.value, costo.value);
-    table.innerHTML = '';
-    tableinvertida.innerHTML = '';
     console.clear();
     console.log('Se oprimió el botón Agregar');
-    let cabecera1 = table.insertRow(-1)
-    let titulo11 = cabecera1.insertCell(0)
-    let titulo12 = cabecera1.insertCell(1)
-    titulo11.textContent = 'Código'
-    titulo12.textContent = 'Nombre'
-    let cabecera2 = tableinvertida.insertRow(-1)
-    let titulo21 = cabecera2.insertCell(0)
-    let titulo22 = cabecera2.insertCell(1)
-    titulo21.textContent = 'Código'
-    titulo22.textContent = 'Nombre'
-    if (articulo.codigo && articulo.nombre && articulo.descripcion && articulo.cantidad && articulo.costo) {
-        articulo.añadir(articulo);
-        console.log(lista);
-        for (let i = 0; i < lista.length; i++) {
-            let fila = table.insertRow(-1)
-            let celda1 = fila.insertCell(0)
-            let celda2 = fila.insertCell(1)
-            celda1.textContent = lista[i].codigo
-            celda2.textContent = lista[i].nombre
-        }
-        for (let i = (lista.length - 1); i >= 0; i--) {
-            let fila = tableinvertida.insertRow(-1)
-            let celda1 = fila.insertCell(0)
-            let celda2 = fila.insertCell(1)
-            celda1.textContent = lista[i].codigo
-            celda2.textContent = lista[i].nombre
+    if (lista.length < 20) {
+        let table = document.getElementById('lista');
+        let tableinvertida = document.getElementById('listainvertida');
+        let codigo = document.querySelector('#codigo');
+        let nombre = document.querySelector('#nombre');
+        let descripcion = document.querySelector('#descripcion');
+        let cantidad = document.querySelector('#cantidad');
+        let costo = document.querySelector('#costo');
+        let articulo = new Articulo(codigo.value, nombre.value, descripcion.value, cantidad.value, costo.value);
+        table.innerHTML = '';
+        tableinvertida.innerHTML = '';
+        let cabecera1 = table.insertRow(-1)
+        let titulo11 = cabecera1.insertCell(0)
+        let titulo12 = cabecera1.insertCell(1)
+        titulo11.textContent = 'Código'
+        titulo12.textContent = 'Nombre'
+        let cabecera2 = tableinvertida.insertRow(-1)
+        let titulo21 = cabecera2.insertCell(0)
+        let titulo22 = cabecera2.insertCell(1)
+        titulo21.textContent = 'Código'
+        titulo22.textContent = 'Nombre'
+        if (articulo.codigo && articulo.nombre && articulo.descripcion && articulo.cantidad && articulo.costo) {
+            articulo.añadir(articulo);
+            console.log(lista);
+            for (let i = 0; i < lista.length; i++) {
+                let fila = table.insertRow(-1)
+                let celda1 = fila.insertCell(0)
+                let celda2 = fila.insertCell(1)
+                celda1.textContent = lista[i].codigo
+                celda2.textContent = lista[i].nombre
+            }
+            for (let i = (lista.length - 1); i >= 0; i--) {
+                let fila = tableinvertida.insertRow(-1)
+                let celda1 = fila.insertCell(0)
+                let celda2 = fila.insertCell(1)
+                celda1.textContent = lista[i].codigo
+                celda2.textContent = lista[i].nombre
+            }
+        } else {
+            alert('📄 Llena todos los espacios 📄');
+            if (lista.length > 0) {
+                console.log(lista);
+            }
         }
     } else {
-        alert('📄 Llena todos los espacios 📄');
+        alert('📟 Se ha llegado al limite de registros | 20 máximo 📟');
         if (lista.length > 0) {
             console.log(lista);
         }
     }
 });
 btnEliminar.addEventListener('click', () => {
+    console.clear();
+    console.log('Se oprimió el botón Eliminar');
     let table = document.getElementById('lista');
     let tableinvertida = document.getElementById('listainvertida');
     let codigo = document.querySelector('#codigo');
-    console.clear();
-    console.log('Se oprimió el botón Eliminar');
     if (codigo.value) {
         for (let i = 0; i <= lista.length; i++) {
             if (lista[i]) {
@@ -123,10 +140,10 @@ btnEliminar.addEventListener('click', () => {
     }
 });
 btnBuscar.addEventListener('click', () => {
-    let table = document.querySelector("#infoarticulo");
-    let codigo = document.querySelector('#codigo');
     console.clear();
     console.log('Se oprimió el botón Buscar');
+    let table = document.querySelector("#infoarticulo");
+    let codigo = document.querySelector('#codigo');
     if (codigo.value) {
         for (let i = 0; i <= lista.length; i++) {
             if (lista[i]) {
