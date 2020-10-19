@@ -3,6 +3,9 @@ var btnEliminar = document.querySelector('#btnEliminar');
 var btnBuscar = document.querySelector('#btnBuscar');
 var btnLimpiar = document.querySelector('#btnLimpiar');
 var cboxInsertar = document.querySelector('#cboxInsertar');
+var table = document.getElementById('lista');
+var tableinvertida = document.getElementById('listainvertida');
+var tableactividad = document.getElementById('actividad');
 var lista = new Array;
 class Articulo {
     constructor(codigo, nombre, descripcion, cantidad, costo) {
@@ -41,8 +44,6 @@ btnAgregar.addEventListener('click', () => {
     console.clear();
     console.log('Se oprimió el botón Agregar');
     if (lista.length < 20) {
-        let table = document.getElementById('lista');
-        let tableinvertida = document.getElementById('listainvertida');
         let codigo = document.querySelector('#codigo');
         let nombre = document.querySelector('#nombre');
         let descripcion = document.querySelector('#descripcion');
@@ -64,6 +65,13 @@ btnAgregar.addEventListener('click', () => {
         if (articulo.codigo && articulo.nombre && articulo.descripcion && articulo.cantidad && articulo.costo) {
             articulo.añadir(articulo);
             console.log(lista);
+            let fila = tableactividad.insertRow(-1);
+            let celda1 = fila.insertCell(0);
+            let celda2 = fila.insertCell(1);
+            let celda3 = fila.insertCell(2);
+            celda1.textContent = 'Agregar';
+            celda2.textContent = articulo.codigo;
+            celda3.textContent = articulo.nombre;
             for (let i = 0; i < lista.length; i++) {
                 let fila = table.insertRow(-1);
                 let celda1 = fila.insertCell(0);
@@ -94,13 +102,18 @@ btnAgregar.addEventListener('click', () => {
 btnEliminar.addEventListener('click', () => {
     console.clear();
     console.log('Se oprimió el botón Eliminar');
-    let table = document.getElementById('lista');
-    let tableinvertida = document.getElementById('listainvertida');
     let codigo = document.querySelector('#codigo');
     if (codigo.value) {
         for (let i = 0; i <= lista.length; i++) {
             if (lista[i]) {
                 if (lista[i].codigo == codigo.value) {
+                    let fila = tableactividad.insertRow(-1);
+                    let celda1 = fila.insertCell(0);
+                    let celda2 = fila.insertCell(1);
+                    let celda3 = fila.insertCell(2);
+                    celda1.textContent = 'Eliminar';
+                    celda2.textContent = lista[i].codigo;
+                    celda3.textContent = lista[i].nombre;
                     table.innerHTML = '';
                     tableinvertida.innerHTML = '';
                     lista.splice(i, 1);
@@ -161,6 +174,13 @@ btnBuscar.addEventListener('click', () => {
         for (let i = 0; i <= lista.length; i++) {
             if (lista[i]) {
                 if (lista[i].codigo == codigo.value) {
+                    let fila = tableactividad.insertRow(-1);
+                    let celda1 = fila.insertCell(0);
+                    let celda2 = fila.insertCell(1);
+                    let celda3 = fila.insertCell(2);
+                    celda1.textContent = 'Buscar';
+                    celda2.textContent = lista[i].codigo;
+                    celda3.textContent = lista[i].nombre;
                     let tablecodigo = document.getElementById('tablecodigo');
                     let tablenombre = document.getElementById('tablenombre');
                     let tabledescripcion = document.getElementById('tabledescripcion');
