@@ -16,7 +16,9 @@ class Articulo {
     añadir(elemento) {
         let casilla = document.querySelector('#casilla');
         if (casilla) {
-            if ((casilla.value - 1) < lista.length) {
+            if (casilla.value.length == 0) {
+                alert('💤 Olvidaste ingresar la casilla específica 💤');
+            } else if ((casilla.value - 1) < lista.length) {
                 lista.splice((casilla.value - 1), 0, elemento);
             } else {
                 alert('🚫 No puedes insertar en el último artículo, por encima del mismo o si la lista esta vacía 🚫');
