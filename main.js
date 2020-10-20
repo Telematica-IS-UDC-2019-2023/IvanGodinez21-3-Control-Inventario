@@ -17,18 +17,11 @@ class Articulo {
         this.total = (cantidad * costo);
     }
     añadir(elemento) {
+        lista.push(elemento);
+    }
+    insertar(elemento) {
         let casilla = document.querySelector('#casilla');
-        if (casilla) {
-            if (casilla.value.length == 0) {
-                alert('💤 Olvidaste ingresar la casilla específica 💤');
-            } else if ((casilla.value - 1) < lista.length) {
-                lista.splice((casilla.value - 1), 0, elemento);
-            } else {
-                alert('🚫 No puedes insertar en el último artículo, por encima del mismo o si la lista esta vacía 🚫');
-            }
-        } else {
-            lista.push(elemento);
-        }
+        lista.splice((casilla.value - 1), 0, elemento);
     }
 }
 cboxInsertar.addEventListener('click', () => {
@@ -49,6 +42,7 @@ btnAgregar.addEventListener('click', () => {
         let descripcion = document.querySelector('#descripcion');
         let cantidad = document.querySelector('#cantidad');
         let costo = document.querySelector('#costo');
+        let casilla = document.querySelector('#casilla');
         let articulo = new Articulo(codigo.value, nombre.value, descripcion.value, cantidad.value, costo.value);
         table.innerHTML = '';
         tableinvertida.innerHTML = '';
@@ -63,15 +57,32 @@ btnAgregar.addEventListener('click', () => {
         titulo21.textContent = 'Código';
         titulo22.textContent = 'Nombre';
         if (articulo.codigo && articulo.nombre && articulo.descripcion && articulo.cantidad && articulo.costo) {
-            articulo.añadir(articulo);
+            if (casilla) {
+                if (casilla.value.length == 0) {
+                    alert('💤 Olvidaste ingresar la casilla específica 💤');
+                } else if ((casilla.value - 1) < lista.length) {
+                    articulo.insertar(articulo);
+                    let fila = tableactividad.insertRow(-1);
+                    let celda1 = fila.insertCell(0);
+                    let celda2 = fila.insertCell(1);
+                    let celda3 = fila.insertCell(2);
+                    celda1.textContent = 'Insertar';
+                    celda2.textContent = articulo.codigo;
+                    celda3.textContent = articulo.nombre;
+                } else {
+                    alert('🚫 No puedes insertar en el último artículo, por encima del mismo o si la lista esta vacía 🚫');
+                }
+            } else {
+                articulo.añadir(articulo);
+                let fila = tableactividad.insertRow(-1);
+                let celda1 = fila.insertCell(0);
+                let celda2 = fila.insertCell(1);
+                let celda3 = fila.insertCell(2);
+                celda1.textContent = 'Agregar';
+                celda2.textContent = articulo.codigo;
+                celda3.textContent = articulo.nombre;
+            }
             console.log(lista);
-            let fila = tableactividad.insertRow(-1);
-            let celda1 = fila.insertCell(0);
-            let celda2 = fila.insertCell(1);
-            let celda3 = fila.insertCell(2);
-            celda1.textContent = 'Agregar';
-            celda2.textContent = articulo.codigo;
-            celda3.textContent = articulo.nombre;
             for (let i = 0; i < lista.length; i++) {
                 let fila = table.insertRow(-1);
                 let celda1 = fila.insertCell(0);
